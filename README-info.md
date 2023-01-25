@@ -1,4 +1,4 @@
-#Integrantes do Grupo 10
+# Integrantes do Grupo 10
 
 **Nome:** Guilherme Nunes
 **Trilha:** Frontend
