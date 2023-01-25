@@ -1,10 +1,10 @@
 # Documentação de Git
 
 ## Sumário
-[Git Rebase](#git-rebase)
-[Git Cherry Pick](#git-cherry-pick)
-[Git Revert](#git-revert)
-[Git Squash](#git-squash)
+* [Git Rebase](#git-rebase)
+* [Git Cherry Pick](#git-cherry-pick)
+* [Git Revert](#git-revert)
+* [Git Squash](#git-squash)
 
 ## Git Rebase
 ## Git Cherry Pick
