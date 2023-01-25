@@ -1,23 +1,25 @@
 # Documentação de Git
 
 ## Sumário
-* [Git Rebase](#git-rebase)
-* [Git Cherry Pick](#git-cherry-pick)
-* [Git Revert](#git-revert)
-* [Git Squash](#git-squash)
+
+- [Git Rebase](#git-rebase)
+- [Git Cherry Pick](#git-cherry-pick)
+- [Git Revert](#git-revert)
+- [Git Squash](#git-squash)
 
 ## Git Rebase
+
 ## Git Cherry Pick
 
 <p align="center"><img src="https://wac-cdn.atlassian.com/dam/jcr:dff99252-7ef3-446e-88c3-7a5938d05274/git%20cherry%20pick%20illo.png?cdnVersion=725" width="200"/></p>
 
 ### Sobre
 
-O Cherry Pick serve para pegar um commit específico feito por outro usuário e copiá-lo para a tarefa que o usuário está trabalhando. Ele consegue pegar um commit e o copia de uma branch para outra.  
+O Cherry Pick serve para pegar um commit específico feito por outro usuário e copiá-lo para a tarefa que o usuário está trabalhando. Ele consegue pegar um commit e o copia de uma branch para outra.
 
-Caso o usuário dê um merge em um código que ainda não foi finalizado, pode ocorrer dele trazer pedaços do código que não precisa. E essas partes de código podem conter erros ou ainda nem terem sido testados. Por essa razão, essa ferramenta é tão importante para muitos cenários.  
+Caso o usuário dê um merge em um código que ainda não foi finalizado, pode ocorrer dele trazer pedaços do código que não precisa. E essas partes de código podem conter erros ou ainda nem terem sido testados. Por essa razão, essa ferramenta é tão importante para muitos cenários.
 
-**O objetivo do Git cherry-pick é pegar um commit específico para a task em que se está trabalhando no momento sem o risco de selecionar ramificações que não são necessárias e que possam vir a causar bugs.**  
+**O objetivo do Git cherry-pick é pegar um commit específico para a task em que se está trabalhando no momento sem o risco de selecionar ramificações que não são necessárias e que possam vir a causar bugs.**
 
 Para utilizar o Cherry Pick, usa-se o seguinte comando:
 
@@ -27,9 +29,9 @@ Para utilizar o Cherry Pick, usa-se o seguinte comando:
 
 ### Intervalo de Commits
 
-É também possível pegar um intervalo de commits. O cherry pick permite que você informe o ID do commit inicial e o ID commit final, aqui chamado de A e B, respectivamente.  
+É também possível pegar um intervalo de commits. O cherry pick permite que você informe o ID do commit inicial e o ID commit final, aqui chamado de A e B, respectivamente.
 
-Então, quando falamos de intervalo, você tem duas opções:  
+Então, quando falamos de intervalo, você tem duas opções:
 
 Copiar todos os commits, inclusive o primeiro
 
@@ -47,11 +49,11 @@ git cherry-pick A..B
 
 ### Conflitos
 
-Assim como em merges e rebase, em cherry pick também podem acontecer conflitos, e você irá resolve-los da mesma forma que um merge/rebase.  
+Assim como em merges e rebase, em cherry pick também podem acontecer conflitos, e você irá resolve-los da mesma forma que um merge/rebase.
 
-Você pode resolve-los usando uma interface gráfica, ou via terminal.  
+Você pode resolve-los usando uma interface gráfica, ou via terminal.
 
-Pelo terminal, temos dois comandos: o continue que é para você executar depois que resolver o conflito no código.  
+Pelo terminal, temos dois comandos: o continue que é para você executar depois que resolver o conflito no código.
 
 ```
 git cherry-pick --continue
@@ -66,15 +68,15 @@ git cherry-pick --abort
 
 ### Parâmetros
 
-Esses são os comandos mais comuns que podem te ajudar:  
+Esses são os comandos mais comuns que podem te ajudar:
 
-  * **-e:** permite que você edite a mensagem do commit.  
+- **-e:** permite que você edite a mensagem do commit.
 
-  * **-x:** adiciona uma mensagem no commit copiado avisando que ele é um cherry pick de um outro commit – “cherry picked from commit”.  
+- **-x:** adiciona uma mensagem no commit copiado avisando que ele é um cherry pick de um outro commit – “cherry picked from commit”.
 
-  * **–allow-empty:** por padrão, o cherry-pick não permite commits em branco, com esse parâmetro, ele sobrescreve esse comportamento.  
+- **–allow-empty:** por padrão, o cherry-pick não permite commits em branco, com esse parâmetro, ele sobrescreve esse comportamento.
 
-  * **–allow-empty-message:** quando o commit não tem um título, ele é barrado. Assim como no exemplo anterior, esse parâmetro sobrescreve o comportamento.
+- **–allow-empty-message:** quando o commit não tem um título, ele é barrado. Assim como no exemplo anterior, esse parâmetro sobrescreve o comportamento.
 
 ### Aviso
 
@@ -82,6 +84,63 @@ O Git cherry-pick é um comando muito útil quando bem utilizado, porém ele nã
 
 Use o cherry-pick só em último caso, cuidado para não sair duplicando commits na sua linha do tempo, use com moderação!
 
-
 ## Git Revert
+
+### Funcionalidade
+
+A partir de um commit específico esse comando desfaz as alterações realizadas pelo commit informado, entretanto ele não remove o commit do histórico do projeto
+
+### Sintaxe
+
+Para utilizar o comando:
+
+```
+git revert "chave do commit"
+```
+
+### Aplicação do comando
+
+Log dos commits realizados no projeto até o momento:
+
+<p align="center"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--AFPzg9KH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hmjgx0izetq8r3vdo7ri.png" width="400"/></p>
+
+Arquivo html:
+
+<p align="center"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--kH8QVbEB--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/juutdltmncdbe59lolki.png" width="400"/></p>
+
+Para reverter o código para situação anterior à adição de metadados deve-se utilizar o comando:
+
+```
+git revert c2f6c649
+```
+
+Obs: "c2f6c649" É a chave específica do commit que deseja reverter
+
+##### Utilização do HEAD no revert
+
+Uma outra forma de utilizar **git revert** é utilizando **git revert HEAD**, de forma que com a utilizaçãao do "HEAD" o último commit realizado será revertido:
+
+```
+git revert c2f6c649
+```
+
+Após a utilização do comando git revert, o git abrirá sua IDE de utilização para editar o commit de reversão, da seguinte forma:
+
+<p align="center"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--XgoSowmX--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/cjx1x6u5or4k0x7ftnxn.png" width="400"/></p>
+
+Após a operação,irá aparecer a mensagem de confirmação de reversão do commit.
+
+```
+[main 0967249] Revert "adicionando meta dados"
+ 1 file changed, 1 deletion(-)
+```
+
+#### Erro
+
+Caso ocorra algum erro durante o processo de reversão e queira cancelar a operação utilize o comando:
+
+```
+git revert --abort
+```
+
 ## Git Squash
