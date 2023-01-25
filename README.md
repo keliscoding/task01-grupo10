@@ -68,13 +68,13 @@ git cherry-pick --abort
 
 Esses são os comandos mais comuns que podem te ajudar:  
 
-    * **-e:** permite que você edite a mensagem do commit.  
+  * **-e:** permite que você edite a mensagem do commit.  
 
-    * **-x:** adiciona uma mensagem no commit copiado avisando que ele é um cherry pick de um outro commit – “cherry picked from commit”.  
+  * **-x:** adiciona uma mensagem no commit copiado avisando que ele é um cherry pick de um outro commit – “cherry picked from commit”.  
 
-    * **–allow-empty:** por padrão, o cherry-pick não permite commits em branco, com esse parâmetro, ele sobrescreve esse comportamento.  
+  * **–allow-empty:** por padrão, o cherry-pick não permite commits em branco, com esse parâmetro, ele sobrescreve esse comportamento.  
 
-    * **–allow-empty-message:** quando o commit não tem um título, ele é barrado. Assim como no exemplo anterior, esse parâmetro sobrescreve o comportamento.
+  * **–allow-empty-message:** quando o commit não tem um título, ele é barrado. Assim como no exemplo anterior, esse parâmetro sobrescreve o comportamento.
 
 ### Aviso
 
