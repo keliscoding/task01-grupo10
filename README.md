@@ -178,7 +178,7 @@ git revert --abort
 Permite combinar vários commits no histórico da branch para um só. Isso auxilia na visualização do histórico.
 Como demonstrado no Rebase interativo, ele é utilizado na parte interativa onde se escolhe o que fazer com cada commit, a partir do rebase --i juntamente com o hash:
 
-``` git rebase -i 5ebadcd ```
+``` git rebase -i 2a71632 ```
 
 Após executar este comando será aberto um arquivo temporário para podermos fazer as alterações desejadas, o arquivo será similar a este abaixo:
 
@@ -208,10 +208,10 @@ Após executar este comando será aberto um arquivo temporário para podermos fa
 ```
 ### Como queremos que os 4 commits sejam "Squashados" somente no primeiro, iremos: 
 ```
-  pick 2a71632 Adicionado Nome   
+ pick 2a71632 Adicionado Nome   
  squash 742bda9 Adicionado Sobrenome   
  squash e253476 Adicionado Idade  
  squash 4d03037 Adicionado Cidade 
  ```
 
-As linhas dos commits 742bda9, e253476 e 4d03037 foram mudadas para squash, portanto serão combinados ao commit que possui a o nome pick(2a71632 - Nome)
+As linhas dos commits *742bda9*, *e253476* e *4d03037* foram mudadas para squash, portanto serão combinados ao commit que possui  o hash 2a71632 (Nome);
