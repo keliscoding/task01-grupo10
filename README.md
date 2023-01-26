@@ -8,6 +8,37 @@
 - [Git Squash](#git-squash)
 
 ## Git Rebase
+### O que é o Git Rebase?
+Rebase é uma das formas que o Git possui para integrar alterações de uma ramificação para outra.
+Rebasing é o processo de modificação ou de combinação uma série de commits para um novo commit base.
+Um forte motivo para usá-lo é manter o projeto com um histórico linear.
+### pode ser visualizado da seguinte forma:
+<p align="center"><img src="https://wac-cdn.atlassian.com/dam/jcr:4e576671-1b7f-43db-afb5-cf8db8df8e4a/01%20What%20is%20git%20rebase.svg?cdnVersion=736" width="200"/></p>
+Em outras palavras, o rebase literalmente altera a base do ramo do commit para outra, de forma que pareça ser criado a partir de um commit diferente.
+
+## Uso:
+Considere que você está produzindo uma feature, e a branch principal do projeto progrediu após isso. Voce pretende inserir as modificações na sua ramificação e também quer que o histórico fique limpo.
+
+  ```git rebase branch-base```
+   (branch-base indica a branch que deseja usar como base para o rebase).
+
+## Rebase interativo
+Git rebase interactive é quando o git rebase aceita um argumento --i. O "i" representa "Interactive." Sem nenhum argumento, o comando é executado no modo padrão
+
+```git rebase --interactive <base>```
+(Com o hash do commit em mãos)
+Executar o git rebase com a bandeira -i dá início a uma sessão de rebasing interativa. Em vez de mover todos os commits para a nova base sem conhecimento, o rebasing interativo oferece a oportunidade de alterar os commits individuais no processo.
+
+```
+Comandos:
+ p, pick = usa o commit
+ r, reword = usa o commit, mas edita sua mensagem
+ e, edit = usa o commit, mas para de emendar
+ s, squash = usa o commit, mas mescla no commit anterior
+ f, fixup = como o  "squash", mas descarta o log do commit
+ x, exec = executa o comando (o resto da linha) usando o shell
+ d, drop = remove o commmit
+```
 
 ## Git Cherry Pick
 
@@ -144,3 +175,43 @@ git revert --abort
 ```
 
 ## Git Squash
+Permite combinar vários commits no histórico da branch para um só. Isso auxilia na visualização do histórico.
+Como demonstrado no Rebase interativo, ele é utilizado na parte interativa onde se escolhe o que fazer com cada commit, a partir do rebase --i juntamente com o hash:
+
+``` git rebase -i 5ebadcd ```
+
+Após executar este comando será aberto um arquivo temporário para podermos fazer as alterações desejadas, o arquivo será similar a este abaixo:
+
+``` 
+  pick 2a71632 Adicionado Nome   
+  pick 742bda9 Adicionado Sobrenome  
+  pick e253476 Adicionado Idade  
+  pick 4d03037 Adicionado Cidade 
+
+ Rebase 5ebadcd..4d03037 onto 5ebadcd  
+  
+ Commands:  
+  p, pick = use commit  
+  r, reword = use commit, but edit the commit message  
+  e, edit = use commit, but stop for amending  
+  s, squash = use commit, but meld into previous commit  
+  f, fixup = like "squash", but discard this commit's log message  
+  x, exec = run command (the rest of the line) using shell  
+  
+ These lines can be re-ordered; they are executed from top to bottom.  
+  
+ If you remove a line here THAT COMMIT WILL BE LOST.  
+  
+ However, if you remove everything, the rebase will be aborted.  
+  
+ Note that empty commits are commented out
+```
+### Como queremos que os 4 commits sejam "Squashados" somente no primeiro, iremos: 
+```
+  pick 2a71632 Adicionado Nome   
+ squash 742bda9 Adicionado Sobrenome   
+ squash e253476 Adicionado Idade  
+ squash 4d03037 Adicionado Cidade 
+ ```
+
+As linhas dos commits 742bda9, e253476 e 4d03037 foram mudadas para squash, portanto serão combinados ao commit que possui a o nome pick(2a71632 - Nome)
